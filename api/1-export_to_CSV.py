@@ -6,7 +6,7 @@ import sys
 import urllib.request
 
 if __name__ == "__main__":
-    user_id = int(sys.argv[1])
+    user_id = sys.argv[1]
     base_url = "https://jsonplaceholder.typicode.com"
 
     user_url = "{}/users/{}".format(base_url, user_id)
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     filename = "{}.csv".format(user_id)
 
     with open(filename, "w", newline="") as csvfile:
-        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL, lineterminator='\n')
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for task in todos_list:
             writer.writerow([
                 user_id,
