@@ -10,7 +10,7 @@ if __name__ == "__main__":
     all_data = {}
     for user in users:
         user_id = user.get("id")
-        username = user.get("username") 
+        username = user.get("username")
         user_tasks = []
         for task in todos:
             if task.get("userId") == user_id:
