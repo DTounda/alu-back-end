@@ -1,4 +1,4 @@
-
+#!/usr/bin/python3
 """Exports employee TODO list data to CSV format."""
 import csv
 import json
@@ -6,10 +6,6 @@ import sys
 import urllib.request
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: {} <user_id>".format(sys.argv[0]))
-        sys.exit(1)
-
     user_id = int(sys.argv[1])
     base_url = "https://jsonplaceholder.typicode.com"
 
@@ -26,11 +22,11 @@ if __name__ == "__main__":
     filename = "{}.csv".format(user_id)
 
     with open(filename, "w", newline="") as csvfile:
-        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL, lineterminator='\n')
         for task in todos_list:
             writer.writerow([
                 user_id,
                 username,
                 task.get("completed"),
                 task.get("title")
-          
+            ])
