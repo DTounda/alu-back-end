@@ -19,7 +19,8 @@ def export_to_json(employee_id):
     username = user.get("username")
 
     # Fetch todos for the user
-    todos_response = requests.get(f"{base_url}/todos", params={"userId": employee_id})
+    todos_response = requests.get(f"{base_url}/todos",
+                                  params={"userId": employee_id})
     todos = todos_response.json()
 
     # Build the data structure
