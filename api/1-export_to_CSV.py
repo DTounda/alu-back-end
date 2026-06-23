@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 """Exports employee TODO list data to CSV format."""
 import csv
 import json
@@ -33,4 +33,4 @@ if __name__ == "__main__":
                 username,
                 task.get("completed"),
                 task.get("title")
-            ])
+          
