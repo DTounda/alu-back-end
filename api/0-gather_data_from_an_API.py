@@ -1,15 +1,19 @@
 #!/usr/bin/python3
 """Returns TODO list progress for a given employee ID."""
-import requests
+import json
 import sys
+import urllib.request
 
 if __name__ == "__main__":
     user_id = int(sys.argv[1])
     base_url = "https://jsonplaceholder.typicode.com"
-    user = requests.get("{}/users/{}".format(base_url, user_id)).json()
+    user_url = "{}/users/{}".format(base_url, user_id)
+    with urllib.request.urlopen(user_url) as response:
+        user = json.loads(response.read().decode())
     user_name = user.get("name")
-    todos_list = requests.get("{}/todos".format(base_url),
-                              params={"userId": user_id}).json()
+    todos_url = "{}/todos?userId={}".format(base_url, user_id)
+    with urllib.request.urlopen(todos_url) as response:
+        todos_list = json.loads(response.read().decode())
     number_of_task = len(todos_list)
     task_completed = []
     for task in todos_list:
